@@ -1,0 +1,113 @@
+.section-accordion {
+    padding: 82px 20px 128px;
+    background: #F4F5F7;
+    position: relative;
+    overflow: hidden;
+}
+
+.section-accordion .green {
+    font-weight: 700;
+    font-size: 22px;
+    line-height: 34px;
+    color: #009B4D;
+    display: block;
+    margin-bottom: 24px;
+}
+
+.section-accordion .accordion-title {
+    font-weight: 700;
+    font-size: 56px;
+    line-height: 56px;
+    /* or 100% */
+
+    letter-spacing: -0.5px;
+
+    color: #2B292D;
+
+    max-width: 462px;
+    width: 100%;
+    margin-bottom: 24px;
+}
+
+.section-accordion .sub-text {
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 34px;
+    /* or 142% */
+    color: #2B292D;
+    display: block;
+    max-width: 461px;
+    width: 100%;
+    margin-bottom: 48px;
+}
+
+.section-accordion .accordion-main .accordion-item {
+    max-width: 459px;
+    width: 100%;
+    border-bottom: 1px solid rgba(43, 41, 45, .15);
+    margin-bottom: 21px;
+    padding-bottom: 23px;
+}
+
+.section-accordion .accordion-main .accordion-item:last-child {
+    margin-bottom: 0;
+}
+
+.section-accordion .accordion-main .accordion-item .accordion-item-title {
+    display: flex;
+    align-items: center;
+    cursor: url("../../img/pointer.svg"), auto;
+}
+
+.section-accordion .accordion-main .accordion-item .accordion-item-title .title {
+    margin-left: 15px;
+    font-weight: 700;
+    font-size: 22px;
+    line-height: 26px;
+    /* or 118% */
+    color: #2B292D;
+}
+
+.section-accordion .accordion-main .accordion-item .text {
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 26px;
+    /* or 144% */
+    color: #2B292D;
+    display: block;
+    margin-top: 8px;
+}
+
+.section-accordion .accordion-main .accordion-item.active {
+    border-bottom: 3px solid #3142C6;
+}
+
+.section-accordion .accordion-main .accordion-item.active .accordion-item-title * {
+    color: #3142C6;
+    fill: #3142C6;
+}
+
+.section-accordion .img_l,
+.img_r {
+    position: absolute;
+    transition: left .5s linear, right .5s linear;
+}
+
+.section-accordion .img_l {
+    top: 185px;
+    left: -185px;
+}
+
+.section-accordion .img_r {
+    top: 99px;
+    right: -174px;
+}
+
+@media only screen and (max-width: 1618px){
+    .section-accordion .img_l{
+        display: none;
+    }
+    .section-accordion .img_r{
+        right: -659px;
+    }
+}
