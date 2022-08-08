@@ -1,180 +1,211 @@
-// в начале строки отсупы в виде табуляции
-// let a = 23;
+// 8
 
-// if (true){
-//     if (true){
+// let day = +prompt();
 
-//     }    
+// if (day <= 10 && day >= 1){
+//     document.write('первая декада');
+// }else if(day <= 20 && day > 10){
+//     document.write('Вторая декада');
+// }else if(day <=31 && day > 20){
+//     document.write('Третья декада');
+// }else{
+//     document.write('Введенный день не входит в диапазон значений');
 // }
 
-// В конце строки не должно быть пробелов
+// day = +prompt('Введите день');
 
-// let a = 'Очень нужное значение!!!'
+// let m = null,
+//     mName = '';
 
-// До 5 уровней вложенности
-// {
-//     {
-//         {
-//             {
-//                 {
-                    //Далее вложенности делать не стоит
-//                 }
-//             }
-//         }
+// if (day >= 1 && day <= 31){
+//     m = 1;
+//     mName = 'Январь';
+// }else if (day >= 32 && day <= 59){
+//     m = 2;
+//     mName = 'Февраль';
+// }else{
+//     m = 3;
+//     mName = 'Все остальное';
+// }
+
+// document.write(mName);
+
+// switch (m){
+//     case 1:
+//     case 2:
+//         document.write('Зима')
+//         break;
+//     case 3:
+//         document.write('Весна')
+//         break;
+//     default:
+//         document.write('Все остальное');
+// }
+
+// let a = prompt();
+
+// if(isNaN(a)){
+//     alert('string');
+// }else if(a){
+//     alert('NaN')
+// }else {
+//     alert('null | undefined')
+// }
+
+let a = 20;
+console.log(a);
+
+if (1){
+    let a = 30;
+    console.log(a);
+}
+
+console.log(a);
+
+var b = 10;
+console.log(b);
+
+if (1){
+    var b = 20;
+    console.log(b);
+}
+
+console.log(b);
+
+var i = 0;
+
+for (var i = 1; i < 20; i += 2){
+    // console.log('for', i);
+}
+
+// console.log(i);
+
+let c = 2;
+
+console.log(c++); // Поствиксный сначала покажет, потом изменит (2), но после произойдет увелеичений на 1 (3)
+console.log(++c); // Префиксный сначала изменит, потом покажет (4)
+
+// c++ сначала отобразит текущее значение переменной "c" (2), а затем выполнит операцию "c = c + 1" 
+// ++c сначала произведет операцию "c = c + 1", а затем отобразит значение переменной "c" (4)
+
+// sup sub
+
+console.log(--c); 
+console.log(c--);
+console.log(c);
+
+// ++ - инкремент (+ 1)
+// -- - декримент (- 1)
+
+// let str = 'abcde';
+
+// console.log(str[0]);
+// console.log(str[1]);
+// console.log(str[2]);
+// console.log(str[3]);
+// console.log(str[4]);
+
+
+// str[2] = 'F';
+
+// console.log(str);
+
+// let flag = true;
+// let count = 0;
+
+// while (flag){
+//     count += 2;
+//     if (count > 30){
+//         flag = !flag;
 //     }
 // }
 
-// Длинна строки не более 80 символов
+// let sum = 0;
 
-// Выравнивание аргументов при переносе выполнять по первому аргменту
+// while(1){
+//     let num = +prompt();
+//     if (isNaN(num)) break;
+//     if (!num) break;
 
-// let a = 1,
-//     b =2,
-//     c = 3;
+//     sum += num;
+// }
 
-// if/else/for/while/try многострочные и с фигурными скобками
+// alert(sum)
 
-// унарные операторы отделяются пробелами с двух сторон + - / * = % ^ |
+// null => пусто
 
-// : после имени должны отделятся одним пробелом "условие ? true : false
+// |3423|4234| => undefined
+// |klgf|43re| => undefined
+// |3423|3432| => undefined
+// |4233|dsff| => undefined
+// |dgfd|343d| => undefined
+// |    |    | => null
 
-// Не использовать пробелы в пустых конструкциях по типу [] {} fn()
+// NaN - всё то, что нельзя преобразовать в число (not a number)
 
-// 1 Пробел между аргументом и выражением
+// do{
+//     console.log('Цикл do .. while всегда выполняется хотя бы один раз')
+// }while(false)
 
-// let a = 1;
+let str = 'dfgdf gdfg  fdg fgddfg   dfgdf    hgfhf   sdfsd rew gdf';
+let rez = '';
+let s = '';
 
-// let title = document.querySelector('h1');
-// title.style.color = 'green';
-
-// var a = 'string';
-
-// var a = 43;
-
-// let b = 1;
-
-// let b = 'string';
-
-// const c = 23;
-
-let str = "String";
-let num = 23; // number - целые числе так и числа с плавающей точкой
-let bool = true || false;
-let u = undefined; // только созданная переменная и вней хранится мусор
-let n = null; // ничего
-let nan = NaN; //Больше относится к числам, не число, это не относится к типу данных
-let arr = []; //Массивы
-let obj = {}; //Объекты
-
-
-console.log(num + str); //Не явного приведения типов
-
-console.log(typeof str);
-
-let a = '234.43';
-
-console.log(Number(a)); //1 Способ
-
-console.log(parseInt(a)); //2 Способ
-
-console.log(parseFloat(a)); //3 Способ
-
-console.log(+ a); //4 Способ
-
-
-let b = 432;
-
-console.log(b);
-
-b = 'String';
-
-console.log(b);
-
-
-// let a = 'второстепенное значение';
-
-console.log(a)
-
-//Первый способ
-/*
-let a = 5;
-
-// выполняем задание
-//его успешно выполнили
-
-a = 10;
-*/
-
-//Второй способ
-
-let global = 'Глобальная переменная';
-
-{
-    let a = 5;
-    console.log('Шестой задание', a);
-}
-
-{
-    let a = 10;
-    console.log('Восьмое задание', a);
-}
-
-{
-    let c = 'Видна только в блоке';
-    console.log(c);
-    {
-        console.log('Видна внутри вложенного блока', c);
-        console.log('Глобальная переменная тут', global)
+for (let i = 0; i < str.length; i++){
+    s += str[i];
+    if(str[i] === ' ' && str[i + 1] === ' '){
+        s = '';
+    }
+    if (str[i] !== ' '){
+        rez += s;
+        //Вот тут будет условие для определения максимального и минимального числа
+        s = '';
     }
 }
 
-// console.log(c);
+console.log(rez);
 
-var d = 34;
+let s1 = 'индо земля зашаталась под ногами-и вырос,';
+let s2 = 'и заревел он голосом диким...';
+let s3 = 'блеснула молния и ударил гром,';
+let s4 = 'а так какое-то чудище, страшное и мохнатое,'
+let s5 = 'как будто из-под земли, перед купцом:';
+let s6 = 'Он подошёл и сорвал аленький цветочек.';
+let s7 = 'зверь не зверь, человек не человек,';
+let s8 = 'В ту же минуту, безо всяких туч,';
 
-console.log(d);
+console.log(s6 + " " + s8 + " " + s3 + " " + s1 + " " + s5 + " " + s7 + " " + s2);
 
-{
-    var d = 'Hello world';
-    console.log(d);
+// let max = -Infinity,
+//     min = Infinity;
+
+// if (45 > max) max = 45;
+// if (45 < min) min = 45;
+
+// for of
+
+// for in
+
+let str1 = 'qwertyuio'; // q[0]w[1]e[2]r[3]t[4]y[5]u[6]i[7]o[8]
+                        // value[key]
+
+for (let key in str1){
+    console.log(key);
 }
 
-console.log(d);
+for (let value of str1){
+    console.log(value);
+}
 
-//Блочная область видимости у операторов if/for/while
-let e = 'fgdfg'
+let str3 = ''
 
-console.log(isNaN(e)); //true
+for (let k in str1){
+    str3 += str1[k];
+    if (str1[k] === 't') str3 += 'T' 
+}
 
-let f = '43242';
+console.log(str3);
 
-console.log(isNaN(f));  //false
+str4 = str1.replace('t', 'T');
 
-let g = 56 / 0;
-
-console.log(isFinite(g));
-
-// 0, '', false, null, undefined == false
-
-console.log(0 || 1); // 1
-console.log(1 || 0 || 323); // 1 
-
-console.log(0 && 1); // 0
-console.log(1 && 0); // 0
-
-// Для оператора ?? ложными не являются 0 и ''
-
-console.log(0 ?? 1); // 0
-console.log(1 ?? 0); // 1
-console.log(null ?? 1); // 1
-console.log(undefined ?? 1); // 1
-console.log('' ?? 1); // ''
-console.log(1 ?? null); // 1
-
-// let vvod = prompt('Введите значение') ?? 'Пользователь не ввел ничего';
-
-// console.log(vvod)
-
-console.log(('5' && false) || true + 10); // true => 1
-
-console.log(html);
+console.log(str4)
