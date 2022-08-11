@@ -1,211 +1,156 @@
-// 8
+// let a = prompt(),
+//     count = 0,
+//     sum = 0,
+//     reverse = '';
 
-// let day = +prompt();
-
-// if (day <= 10 && day >= 1){
-//     document.write('первая декада');
-// }else if(day <= 20 && day > 10){
-//     document.write('Вторая декада');
-// }else if(day <=31 && day > 20){
-//     document.write('Третья декада');
-// }else{
-//     document.write('Введенный день не входит в диапазон значений');
+// for (let i = 0; i < a.length; i++){
+//     count++;
+//     sum += Number(a[i]);
+//     reverse = a[i] + reverse; // 1-я итерация: 1 + '', 2-я итерация: 2 + '1' => '21' 3-я итерация: 3 + '21' => '321'
 // }
 
-// day = +prompt('Введите день');
-
-// let m = null,
-//     mName = '';
-
-// if (day >= 1 && day <= 31){
-//     m = 1;
-//     mName = 'Январь';
-// }else if (day >= 32 && day <= 59){
-//     m = 2;
-//     mName = 'Февраль';
-// }else{
-//     m = 3;
-//     mName = 'Все остальное';
+// for (let i = a.length - 1; i >= 0; i--){
+//     count++;
+//     sum += +a[i];
+//     reverse += a[i];
 // }
 
-// document.write(mName);
+// length - последний индекс + 1
 
-// switch (m){
-//     case 1:
-//     case 2:
-//         document.write('Зима')
-//         break;
-//     case 3:
-//         document.write('Весна')
-//         break;
-//     default:
-//         document.write('Все остальное');
+// console.log(`Число: ${a},
+// Количество: ${count},
+// Сумма: ${sum},
+// Перевернутое число: ${reverse}`);
+
+// let str = '-4 98 4 6 1 32 4 65 4 3 5 7 89 7 10 1 36 8 -57',
+//     min = Infinity,
+//     max = -Infinity,
+//     buffer = '';
+
+// for (let i = 0; i < str.length; i++){
+//     if(str[i] !== ''){
+//         buffer += str[i];
+//         if (str[i] !== ' ' && i !== str.length - 1) continue;
+//     }
+//     buffer = parseFloat(buffer);
+//     if(buffer > max) max = buffer;
+//     if(buffer < min) min = buffer;
+//     buffer = '';
 // }
 
-// let a = prompt();
+// console.log(`max = ${max}
+// min = ${min}`);
 
-// if(isNaN(a)){
-//     alert('string');
-// }else if(a){
-//     alert('NaN')
-// }else {
-//     alert('null | undefined')
+// let sum = 0,
+//     avg = 0,
+//     count = 0;
+
+// for (;;){
+//     let num = prompt('Введите число');
+
+//     if (isNaN(num)){
+//         alert('Вы ввели не число');
+//         continue;
+//     }
+
+//     if (num === '' || num == 0) break;
+
+//     sum += +num;
+//     count++;
 // }
 
-let a = 20;
-console.log(a);
+// avg = sum / count;
 
-if (1){
-    let a = 30;
-    console.log(a);
-}
+// console.log(sum, avg);
 
-console.log(a);
+// let i = 0;
 
-var b = 10;
-console.log(b);
-
-if (1){
-    var b = 20;
-    console.log(b);
-}
-
-console.log(b);
-
-var i = 0;
-
-for (var i = 1; i < 20; i += 2){
-    // console.log('for', i);
-}
+// for (;i < 10;){
+//     i++
+// }
 
 // console.log(i);
 
-let c = 2;
-
-console.log(c++); // Поствиксный сначала покажет, потом изменит (2), но после произойдет увелеичений на 1 (3)
-console.log(++c); // Префиксный сначала изменит, потом покажет (4)
-
-// c++ сначала отобразит текущее значение переменной "c" (2), а затем выполнит операцию "c = c + 1" 
-// ++c сначала произведет операцию "c = c + 1", а затем отобразит значение переменной "c" (4)
-
-// sup sub
-
-console.log(--c); 
-console.log(c--);
-console.log(c);
-
-// ++ - инкремент (+ 1)
-// -- - декримент (- 1)
-
-// let str = 'abcde';
-
-// console.log(str[0]);
-// console.log(str[1]);
-// console.log(str[2]);
-// console.log(str[3]);
-// console.log(str[4]);
-
-
-// str[2] = 'F';
-
-// console.log(str);
-
-// let flag = true;
+// let num = 50;
 // let count = 0;
 
-// while (flag){
-//     count += 2;
-//     if (count > 30){
-//         flag = !flag;
-//     }
+// while (num > 10){
+//     count++;
+//     num /= 2; // num = num / 2
 // }
 
-// let sum = 0;
+// console.log(count);
 
-// while(1){
-//     let num = +prompt();
-//     if (isNaN(num)) break;
-//     if (!num) break;
+// let arr = ['string', 1, true, [1, 2, 3], count];
 
-//     sum += num;
-// }
+// console.table(arr);
 
-// alert(sum)
+let arr = [1, 2, 3];
 
-// null => пусто
+console.log(arr.length);
 
-// |3423|4234| => undefined
-// |klgf|43re| => undefined
-// |3423|3432| => undefined
-// |4233|dsff| => undefined
-// |dgfd|343d| => undefined
-// |    |    | => null
+console.log(arr[0]); // 1
 
-// NaN - всё то, что нельзя преобразовать в число (not a number)
+arr[100] = 'lol';
 
-// do{
-//     console.log('Цикл do .. while всегда выполняется хотя бы один раз')
-// }while(false)
+console.log(arr);
 
-let str = 'dfgdf gdfg  fdg fgddfg   dfgdf    hgfhf   sdfsd rew gdf';
-let rez = '';
-let s = '';
+console.log(arr.length); // 101
 
-for (let i = 0; i < str.length; i++){
-    s += str[i];
-    if(str[i] === ' ' && str[i + 1] === ' '){
-        s = '';
-    }
-    if (str[i] !== ' '){
-        rez += s;
-        //Вот тут будет условие для определения максимального и минимального числа
-        s = '';
-    }
+let arr1 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
+// push, pop, shift, unshift
+
+console.log(arr1);
+
+arr1.push(5);
+
+console.log(arr1);
+
+let el = arr1.pop();
+
+console.log(arr1);
+console.log(el);
+
+arr1.unshift(0);
+
+console.log(arr1);
+
+let el2 = arr1.shift();
+
+console.log(arr1);
+console.log(el2);
+
+//slice splice
+
+let el3 = arr1.slice(2, 6); //безопасней, не изменяет массив
+
+console.log(el3, arr1);
+
+let el4 = arr1.splice(2, 6); // опаснее, изменяет массив
+
+console.log(el4, arr1);
+
+let index1 = arr1.indexOf(10); //первое взождение элемента в массив
+
+let index2 = arr1.lastIndexOf(3); // последнее вхождение элемента в массив
+
+//если элеиент не найден, то возвращают -1
+
+console.log(index1, index2);
+
+
+let str = 'hghdsfkghsdlfjgsdhgr';
+let marker = 'g';
+
+str = str.split(''); //преобразует строку в массив и в качестве параметра принимает строку-разделитель
+console.log(str);
+while (1){
+    let i = str.indexOf(marker);
+    if (i === -1) break;
+    str.splice(i, 1);
 }
 
-console.log(rez);
+str = str.join('-'); //преобразовать массив в строку
 
-let s1 = 'индо земля зашаталась под ногами-и вырос,';
-let s2 = 'и заревел он голосом диким...';
-let s3 = 'блеснула молния и ударил гром,';
-let s4 = 'а так какое-то чудище, страшное и мохнатое,'
-let s5 = 'как будто из-под земли, перед купцом:';
-let s6 = 'Он подошёл и сорвал аленький цветочек.';
-let s7 = 'зверь не зверь, человек не человек,';
-let s8 = 'В ту же минуту, безо всяких туч,';
-
-console.log(s6 + " " + s8 + " " + s3 + " " + s1 + " " + s5 + " " + s7 + " " + s2);
-
-// let max = -Infinity,
-//     min = Infinity;
-
-// if (45 > max) max = 45;
-// if (45 < min) min = 45;
-
-// for of
-
-// for in
-
-let str1 = 'qwertyuio'; // q[0]w[1]e[2]r[3]t[4]y[5]u[6]i[7]o[8]
-                        // value[key]
-
-for (let key in str1){
-    console.log(key);
-}
-
-for (let value of str1){
-    console.log(value);
-}
-
-let str3 = ''
-
-for (let k in str1){
-    str3 += str1[k];
-    if (str1[k] === 't') str3 += 'T' 
-}
-
-console.log(str3);
-
-str4 = str1.replace('t', 'T');
-
-console.log(str4)
+console.log(str);
