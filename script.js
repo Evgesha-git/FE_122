@@ -1,156 +1,269 @@
-// let a = prompt(),
-//     count = 0,
-//     sum = 0,
-//     reverse = '';
+// let arr = [12, false, 'Текст', 4, 2, -5, 0];
+// let arrBuffer = [];
 
-// for (let i = 0; i < a.length; i++){
-//     count++;
-//     sum += Number(a[i]);
-//     reverse = a[i] + reverse; // 1-я итерация: 1 + '', 2-я итерация: 2 + '1' => '21' 3-я итерация: 3 + '21' => '321'
+// while (arr.length){
+//     let buf = arr.pop();
+//     buf = buf.toString().split('').reverse().join('')
+//     arrBuffer.push(buf);
 // }
 
-// for (let i = a.length - 1; i >= 0; i--){
-//     count++;
-//     sum += +a[i];
-//     reverse += a[i];
+// while(arr.length){
+//     arrBuffer.push(arr.pop())
 // }
 
-// length - последний индекс + 1
+// arr = arr.reverse()
 
-// console.log(`Число: ${a},
-// Количество: ${count},
-// Сумма: ${sum},
-// Перевернутое число: ${reverse}`);
+// console.log(arr);
 
-// let str = '-4 98 4 6 1 32 4 65 4 3 5 7 89 7 10 1 36 8 -57',
-//     min = Infinity,
-//     max = -Infinity,
-//     buffer = '';
-
-// for (let i = 0; i < str.length; i++){
-//     if(str[i] !== ''){
-//         buffer += str[i];
-//         if (str[i] !== ' ' && i !== str.length - 1) continue;
-//     }
-//     buffer = parseFloat(buffer);
-//     if(buffer > max) max = buffer;
-//     if(buffer < min) min = buffer;
-//     buffer = '';
-// }
-
-// console.log(`max = ${max}
-// min = ${min}`);
-
-// let sum = 0,
-//     avg = 0,
-//     count = 0;
-
-// for (;;){
-//     let num = prompt('Введите число');
-
-//     if (isNaN(num)){
-//         alert('Вы ввели не число');
-//         continue;
-//     }
-
-//     if (num === '' || num == 0) break;
-
-//     sum += +num;
-//     count++;
-// }
-
-// avg = sum / count;
-
-// console.log(sum, avg);
-
-// let i = 0;
-
-// for (;i < 10;){
-//     i++
-// }
-
-// console.log(i);
-
-// let num = 50;
+// let arr = [5, 9, 21, , , 9, 78, , , , 6];
 // let count = 0;
 
-// while (num > 10){
-//     count++;
-//     num /= 2; // num = num / 2
+// for(let i = 0; i < arr.length; i++){
+//     if(!arr[i]) count++;
 // }
 
-// console.log(count);
+// console.log(count)
 
-// let arr = ['string', 1, true, [1, 2, 3], count];
+// let arr1 = [48, 9, 0, 4, 21, 2, 1, 0, 8, 84, 76, 8, 4, 13, 2];
+// let arr2 = [1, 8, 0, 13, 76, 8, 7, 0, 22, 0, 2, 3, 2];
 
-// console.table(arr);
+// let indexArr1 = arr1.indexOf(0);
+// let lastIndexArr1 = arr1.lastIndexOf(0);
 
-let arr = [1, 2, 3];
+// let indexArr2 = arr2.indexOf(0);
+// let lastIndexArr2 = arr2.lastIndexOf(0);
 
-console.log(arr.length);
+// let summ1 = 0,
+//     summ2 = 0;
 
-console.log(arr[0]); // 1
+// if (indexArr1 !== lastIndexArr1) {
+//     let buffer = arr1.slice(indexArr1, lastIndexArr1);
+//     while (buffer.length) {
+//         summ1 += buffer.pop();
+//     }
+// }
 
-arr[100] = 'lol';
+// console.log(summ1);
 
-console.log(arr);
+// if (indexArr2 !== lastIndexArr2) {
+//     let buffer = arr2.slice(indexArr2, lastIndexArr2);
+//     while (buffer.length) {
+//         summ2 += buffer.pop();
+//     }
+// }
 
-console.log(arr.length); // 101
+// console.log(summ2);
 
-let arr1 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+// let h = prompt('Введите высоту треугольника');
+// h = Number(h);
+// let arr = []
 
-// push, pop, shift, unshift
+// for (let i = 0; i < h; i++){
+//     let str = ''; //Пустая строка
+//     for (let j = 0; j < h - i; j++){
+//         str += ' '; // пробельный символ
+//     }
+//     let p = ''; //Пустая строка
+//     for (let k = 0; k < i * 2 - 1; k++){
+//         p += '^'
+//     }
 
-console.log(arr1);
+//     arr.push(str + p + str);
+// }
 
-arr1.push(5);
+// for (let elem of arr){
+//     console.log(elem);
+// }
 
-console.log(arr1);
+// for (let key in arr){
+//     console.log(key)
+//     console.log(arr[key]);
+// }
 
-let el = arr1.pop();
+// let arr = [-2, -1, -3, 15, 0, -4, 2, -5, 9, -15, 0, 4, 5, -6, 10, 7];
 
-console.log(arr1);
-console.log(el);
+// for (let i = 0; i < arr.length; i++){
+//     if (arr[i] > -10 && arr[i] < -3){
+//         console.log(arr[i]);
+//     }
+// }
 
-arr1.unshift(0);
+// let arr = ['10', '20', '30', '50', '235', '3000'];
+// let b = ['1', '2', '5'];
 
-console.log(arr1);
+// for (let i = 0; i < arr.length; i++){
+//     if(arr[i][0] == 1 || arr[i][0] == 2 || arr[i][0] == 5){
+//         console.log(arr[i]);
+//     }
+// }
 
-let el2 = arr1.shift();
+// for (let i = 0; i < arr.length; i++){
+//     if (b.includes(arr[i][0])){
+//         console.log(arr[i]);
+//     }
+// }
 
-console.log(arr1);
-console.log(el2);
+// let c = arr.concat(b);
 
-//slice splice
+// console.log(arr.at(-1));
 
-let el3 = arr1.slice(2, 6); //безопасней, не изменяет массив
+// console.log(arr[arr.length - 1]);
 
-console.log(el3, arr1);
+// let arr = [5, 9, 21, , , 9, 78, , , , 6]
 
-let el4 = arr1.splice(2, 6); // опаснее, изменяет массив
+// let b = arr.filter(function(elemArr, index, a){
+//     console.log(a);
+//     console.log(index);
+//     if (elemArr){
+//         return elemArr;
+//     }
+// });
 
-console.log(el4, arr1);
+// console.log(b);
 
-let index1 = arr1.indexOf(10); //первое взождение элемента в массив
+// for (let i = 0; i < arr.length; i++){
+//     if(arr[i]){
+//         b.push(arr[i]);
+//     }
+// }
 
-let index2 = arr1.lastIndexOf(3); // последнее вхождение элемента в массив
+// map, foreEch, find, filter, reduce
 
-//если элеиент не найден, то возвращают -1
+// let arr = [
+//     [1, 2, 3],
+//     [4, 5, 6],
+//     [7, 8, 9]
+// ];
 
-console.log(index1, index2);
 
+// for (let i = 0; i < arr.length; i++){
+//     for (let j = 0; j < arr[i].length; j++){
+//         if (i == j){
+//             arr[i][j] = 0;
+//         }
+//         if (j == (arr.length - 1) - i){
+//             arr[i][j] = 0;
+//         }
+//     }
+// }
 
-let str = 'hghdsfkghsdlfjgsdhgr';
-let marker = 'g';
+// console.log(arr);
 
-str = str.split(''); //преобразует строку в массив и в качестве параметра принимает строку-разделитель
-console.log(str);
-while (1){
-    let i = str.indexOf(marker);
-    if (i === -1) break;
-    str.splice(i, 1);
+// let arr = {
+//     a: [1, 2, 3],
+//     b: [3, 4, 5],
+//     c: [6, 7, 8],
+// };
+
+// console.log(arr.b);
+
+// for (let key in arr) {
+//     console.log(key)
+// }
+
+// let arr2 = {
+//     number: 5,
+//     string: 'string',
+//     boolean: true,
+//     array: [1, 2, 3],
+//     onj: {
+//         number: 5,
+//         string: 'string',
+//         boolean: true,
+//         array: [1, 2, 3],
+//     }
+// };
+
+// let arr = [
+//     {
+//       userId: 1,
+//       id: 1,
+//       title: "sunt aut facere repellat provident occaecati excepturi optio reprehenderit",
+//       body: "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto"
+//     },
+//     {
+//       userId: 1,
+//       id: 2,
+//       title: "qui est esse",
+//       body: "est rerum tempore vitae\nsequi sint nihil reprehenderit dolor beatae ea dolores neque\nfugiat blanditiis voluptate porro vel nihil molestiae ut reiciendis\nqui aperiam non debitis possimus qui neque nisi nulla"
+//     },
+//     {
+//       userId: 2,
+//       id: 3,
+//       title: "ea molestias quasi exercitationem repellat qui ipsa sit aut",
+//       body: "et iusto sed quo iure\nvoluptatem occaecati omnis eligendi aut ad\nvoluptatem doloribus vel accusantium quis pariatur\nmolestiae porro eius odio et labore et velit aut"
+//     },
+// ]
+
+// for (let i = 0; i < arr.length; i++){
+//     if(arr[i].userId === 2){
+//         console.log(arr[i].body)
+//     }
+// }
+
+//Функция - подпрограмма
+
+function f(){ //декларативная функция
+    console.log("Hello World");
+    console.log(b);
 }
 
-str = str.join('-'); //преобразовать массив в строку
+// f();
 
-console.log(str);
+let num1 = 34,
+    num2 = 54;
+
+let a = f2(num1, num2);
+
+function f2(a, b){ // a, b - параметры функции 
+    console.log(a);
+    console.log(b);
+    return a + b;
+}
+
+
+const f3 = function(){ //функциональное выражение
+    console.log('Функционально выражение')
+}
+
+f3();
+
+var b = 23;
+
+const f4 = function(){
+    var a = 10;
+    function f5(){
+        console.log(a)
+    }
+    f5();
+}
+
+console.log(a);
+
+f4()
+
+f();
+
+/**
+ * let b = 45
+ * js пытается найти переменную в глобальной облатси видимости
+ * function f(){
+ * js пытается найти объявление переменной в области выше уровнем
+ *  function f1(){
+ *      js пытается найти объявление переменной в области выше уровнем
+ *      function f2(){
+ *          b += 5 - js не нашел объявление переменной в текущей облати видимости (в тукцщей функции)
+ *      } 
+ *      f2()
+ *  }
+ * f1()
+ * }
+ * f()
+ */
+
+function f6(arg){
+    // arg = arg || 10;
+    arg = arg ?? 10;
+
+    console.log(arg);
+}
