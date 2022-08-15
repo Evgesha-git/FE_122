@@ -267,3 +267,7 @@ function f6(arg){
 
     console.log(arg);
 }
+
+function f7() {
+    return 'This is f7'
+}
