@@ -1,0 +1,13 @@
+.wrapper{ /*document.querySelectorAll('.rapper')*/
+    color: yellow;
+    font-size: 59px;
+}
+
+#container .wrapper{ /*div.queryselector('.wrapper')*/
+    color: tomato;
+    font-size: 40px;
+}
+
+a{
+    color: rgb(0, 0, 0); /*0 - 255*/
+}

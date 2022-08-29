@@ -1,120 +1,98 @@
-// let arr = ['data1', 'data2', 'data3', 'data4', 'data5'];
+function f1(selector) {
+    let elem = document.querySelectorAll(selector);
 
-// // arr.name = 'Petr';
+    console.log(elem);
 
-// console.log(arr);
+    const f2 = (elements) => {
+        [...elements].forEach((el, i) => {
+            if (i % 2 !== 0) el.style.color = 'green';
+        })
+    }
 
-// const lamp = {
-//     power: '60W',
-//     v: 230,
-// };
+    elem.forEach(el => {
+        let child = el.children;
+        for (let i = 0; i < child.length; i++) {
+            if (child.tagName === 'UL'){
+                console.log(child.children)
+                f2(child.children);
+            }
+        }
+    });
+}
 
-// function Contact(data){
-//     this.data = data;
+f1('.container');
 
-//     this.edit = function(data){
-//         Object.assign(this.data, data); //this.data {fio, age, tel, email, /*mail */}, data {mail}
-//     }
-// }
+let el = document.getElementById('id_1');
 
-// function Contacts(){
-//     this.contacts = [];
-//     this.count = 0;
+el.style.fontSize = '40px';
 
-//     this.add = function(data){ // {fio: 'Петр петров Петрович', age: 99, tel: "+3752255678990", email: ""}
-//         const {fio, age, tel, email} = data
-//         if (!fio) return; // fio === '' => false, fio === nul => false, fio === undefined => false
-//         if (age < 18 || age > 120) return;
-//         let contact = new Contact(data);
-//         let id = this.count++;
-//         contact.data.id = id;
-//         this.contacts.push(contact);
-//     }
+let el2 = el.nextElementSibling;
 
-//     this.show = function(){
-//         for (let i = 0; i < this.contacts.length; i++){
-//             console.log("--------------------");
-//             for (let key in this.contacts[i].data){
-//                 console.log(`${key}: ${this.contacts[i].data[key]}`);
-//             }
-//         }
-//     }
-
-//     this.remove = function(id){
-//         this.contacts = this.contacts.filter(contact => contact.data.id !== id);
-//     }
-
-//     this.edit = function(id, data){
-//         let findContact = this.contacts.find(contact => contact.data.id === id);
-//         findContact.edit(data);
-//     }
-
-//     this.getContacts = function(){
-//         return this.contacts;
-//     }
-// }
-
-// const contacts = new Contacts()
-
-// let [, data2, data3, ] = arr;
-
-// // console.log(data1);
-// console.log(data2);
-// console.log(data3);
-// // console.log(data5);
-
-// let obj = {
-//     name: "Alex",
-//     age: 23,
-//     student: {
-//         bool: true,
-//         cours: 5,
-//     }
-// }
-
-// let {age: a, name: b, student: {bool: c}} = obj;
-
-// console.log(b);
-// console.log(a);
-// console.log(c);
-
-let child_1 = document.getElementById('child_1');
-
-console.log(child_1);
-
-// child_1.innerText = 'String';
+el2.style.color = 'red';
+el2.style.fontSize = '30px';
 
 
-//Навигация по дочерним элементам
-console.log(child_1.firstElementChild);
-console.log(child_1.lastElementChild);
-console.log(child_1.children);
+let div = el.closest('.container');
 
-//Навигация по соседним элементам
-console.log(child_1.nextElementSibling);
-console.log(child_1.previousElementSibling);
+console.log(div);
 
+const wrapper = div.querySelector('.wrapper');
 
-//Обращение к родительскому элементу
-console.log(child_1.parentElement)
+let text = wrapper.innerHTML //getter - позволяе получить данные
 
-child_1.style.color = 'green';
-child_1.style.fontSize = '36px';
+console.log(text);
 
+wrapper.innerHTML = `<ul class="spisok"><li><a href="#hash">Page1</a></li>
+<li><a href="#hash1">Page2</a></li>
+<li><a href="#hash2">Page3</a></li>
+<li><a href="#hash3">Page4</a></li>
+<li><a href="#hash4">Page5</a>
+    <ul>
+        <li>list item1</li>
+        <li class="list">list item2</li>  
+        <li class="link link3">list item3</li>
+        <li class="link link4">list item4</li>
+        <li id="listItem5">list item5</li>
+    </ul>
+</li>
+<li><a href="#hash5">Page6</a></li>
+</ul>`; //setter - позволяет задать данные
 
-//Поиск элементов:
-/**
- * getElementById - поиск по id элемента
- * getElementsByTagName - по имини тега
- * getElementsByClassName - по классу
- * getElementsByName - по свойству name
- * 
- * querySelector - поиск одного элемента по CSS селектору
- * queryselectorAll - поиск элементов по CSS селектору
- */
+// innerText - работает аналогично innerHTML
 
-let elems = document.getElementsByClassName('child');
-let elems2 = document.querySelectorAll('.child');
+const a = wrapper.querySelector('a[href="#hash4"]');
 
-console.log(elems);
-console.log(elems2);
+function color(){
+    return Math.floor(Math.random() * 255); // Meth.rangom() выдает случайное число от 0 до 1
+}
+
+a.style.color = `rgb(${color()}, ${color()}, ${color()})`;
+
+let aElement = document.createElement('a');
+aElement.setAttribute('href', '#');
+aElement.classList.add('a'); //add, toggle, remove
+aElement.innerText = 'Ссылк в никуда';
+
+wrapper.append(aElement);
+
+function createElement(el, atributes, content){ // atributes - массив двумерных массивов [[atr1, cont], [atr2, cont2]...]
+    let element = document.createElement(el);
+    atributes.forEach(function(atr){
+        element.setAttribute(atr[0], atr[1]);
+    });
+    element.innerHTML = content;
+    return element;
+}
+
+let div2 = createElement('div', [['class', 'created-div'], ['title', 'Много некоторого текста'], ['id', 'id_3']], 'контентище');
+let div3 = createElement('div', [['class', 'created-div'], ['title', 'Много некоторого текста'], ['id', 'id_3']], 'контентище 2');
+let div4 = createElement('div', [['class', 'created-div'], ['title', 'Много некоторого текста'], ['id', 'id_3']], 'контентище 3');
+let div5 = createElement('div', [['class', 'created-div'], ['title', 'Много некоторого текста'], ['id', 'id_3']], 'контентище 4');
+
+console.log(div2);
+
+div.appendChild(div2, div3); //Тлько один элемент будет выброшен на страницу
+
+div.append(div3, div4, div5) //Поместив все элементы на страницу
+
+div.insertBefore(div3, wrapper)//wrapper - перед ним будет размещен вставляемый элемент, но если вместо wrapper-а поставить null то сработает как appendChild
