@@ -1,0 +1,36 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.tabs-container{
+    background: turquoise;
+}
+
+.tabs{
+    display: flex;
+    list-style: none;
+    background: wheat;
+}
+
+.tab{
+    padding: 10px;
+    background: rgb(186, 168, 135);
+}
+
+.tab:hover{
+    background: rgb(135, 112, 69);
+    cursor: pointer;
+}
+
+.tabs .active{
+    background: rgb(135, 112, 69);
+}
+
+.content{
+    display: none;
+}
+
+.tab-content .active{
+    display: block;
+}
