@@ -1,23 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="./style.css">
-    <script src="./script.js"></script>
+    <link rel="stylesheet" href="./style/style.css">
+    <link rel="stylesheet" href="./style/tooltip.css">
+    <link rel="stylesheet" href="./style/popup.css">
 </head>
+
 <body>
-    <h1>CW JavaScript 8</h1>
-    <div class="todo-container">
+    <div class="tooltips">
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Est omnis nam, ipsam earum iusto quidem laboriosam
+            animi illum nesciunt amet.</p>
+        <p>Nam corporis id hic. <span class="tooltip_element" title="Контент для тултипа бла бла бла">Saepe</span>
+            recusandae fugit esse possimus quas numquam? Quidem vitae inventore quasi rerum numquam expedita quibusdam
+            officia.</p>
+        <p>Delectus doloribus <span class="tooltip_element" title="Контент для второго тултипа бла бла бла">labore vero</span> nam, optio commodi suscipit voluptate asperiores iste nemo non in tenetur
+            fugiat expedita minima ducimus quas!</p>
+        <p>Labore nostrum dicta, cum, exercitationem possimus fugiat quae animi autem commodi obcaecati, amet eveniet
+            maiores. Debitis minus a similique quos.</p>
+    </div>
+    <hr>
+    <div class="popup_container">
+        <p>Lorem ipsum <a href="#" data-type="text" title="Labore nostrum dicta, cum, exercitationem possimus fugiat quae animi autem commodi obcaecati, amet eveniet
+            maiores.">dolor sit amet</a> consectetur adipisicing elit. Similique ipsa, totam animi obcaecati nam debitis id modi praesentium explicabo nesciunt.</p>
+        <p>Non totam praesentium cum facere sed eum quos pariatur unde at vero, fugit minus possimus, ab corrupti optio dolores nemo.</p>
+        <p>Dignissimos magni doloremque rem vero enim consectetur praesentium maiores tempore, laboriosam eius veniam asperiores adipisci perspiciatis animi molestias eos nobis.
+            <a href="https://via.placeholder.com/400" data-type="img"><img src="https://via.placeholder.com/100" alt=""></a>
+        </p>
+        <p>Animi neque illo sint commodi suscipit repellendus saepe voluptatibus harum, nobis corrupti provident minima laborum error officia laudantium natus doloremque!</p>
+        <p><a href="#" data-type="content" data-id="feedback">Feedback</a></p>
+        <p><a href="#" data-type="content" data-id="video">video</a></p>
+    </div>
+
+    <div id="video" class="hide_element">
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/MVXeLc-icc0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+
+    <div class="hide_element" id="feedback">
         <form action="">
             <input type="text" name="" id="">
-            <button type="submit">Add</button>
+            <input type="text" name="" id="">
+            <button type="submit">Отправить</button>
         </form>
-        <div class="todo"></div>
-        <button class="save">Save</button>
-        <button class="clear">Clear</button>
     </div>
+
+    <!-- <div class="popup">
+        <div class="popup_modal">
+            <div class="popup_close">&#215;</div>
+            <div class="popup_content">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa, perspiciatis quibusdam sunt earum temporibus assumenda iusto harum, nesciunt repellendus in at reiciendis laborum molestiae quam, numquam ea cum cumque deleniti sapiente. Deserunt delectus eveniet aliquid, aspernatur ipsam esse similique sequi exercitationem maiores, at, iste eligendi quisquam a distinctio fugiat consectetur.
+            </div>
+        </div>
+    </div> -->
 </body>
+<script src="./script/tooltip.js"></script>
+<script src="./script/popup.js"></script>
 </html>
