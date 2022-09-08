@@ -1,0 +1,38 @@
+.container {
+    position: relative;
+    border: 1px solid #000;
+    margin: 50px;
+    overflow: hidden;
+}
+
+.container .main_slider .sliders{
+    display: flex;
+    list-style: none;
+    transition: .4s linear;
+    /* transform: translate(-500%); */
+}
+
+.container .main_slider .sliders .slide{
+    flex: none;
+    margin: 5px;
+    width: calc(100% - 10px);
+}
+
+.container .main_slider .sliders .slide img{
+    width: 100%;
+}
+
+.container .button{
+    position: absolute;
+    width: 50px;
+    height: 100px;
+    top: calc(50% - 25px);
+}
+
+.container .button.next{
+    right: 0;
+}
+
+.container .button.prev{
+    left: 0;
+}
