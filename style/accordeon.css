@@ -1,46 +1,45 @@
-.wrapper{
-    max-width: 600px;
+*{
+    padding: 0;
+    margin: 0;
+}
+
+.acc_container{
+    max-width: 800px;
     width: 100%;
     margin: 0 auto;
+    transition: .5s linear;
 }
 
-.wrapper .accordeon_container{
-    transition: .5s;
-}
-
-.wrapper .accordeon_button{
-    padding: 10px;
-    padding-left: 30px;
+.acc_container .button{
+    padding: 20px;
     background: gray;
-    font-size: 20px;
     position: relative;
 }
 
-.wrapper .accordeon_button::after{
-    display: block;
+.acc_container .button::before{
     position: absolute;
+    display: block;
     content: '';
     width: 10px;
     height: 10px;
-    border-bottom: 2px solid #000;
-    border-left: 2px solid #000;
-    left: 10px;
-    top: calc(50% - 7px);
+    border-bottom: 1px solid #000;
+    border-left: 1px solid #000;
+    left: 5px;
     transform: rotate(-45deg);
+    transition: .5s linear;
 }
 
-.wrapper .accordeon_button.active::after{
-    top: calc(50% - 4px);
+.acc_container .button.active::before{
     transform: rotate(135deg);
+    top: 26px;
 }
 
-.wrapper .accordeon_content{
+.acc_container .content{
     overflow: hidden;
     height: 0;
-    font-size: 20px;
-    transition: .3s linear;
+    transition: .5s linear;
 }
 
-.wrapper .accordeon_content.active{
+.acc_container .content.active{
     height: auto;
 }

@@ -1,29 +1,24 @@
-const accordeon = (selector) => {
+const accordeon = selector => {
     const container = document.querySelector(selector);
-    const butons = container.querySelectorAll('.accordeon_button');
-    if (!butons) return;
+    const buttons = container.querySelectorAll('.button');
+    const contents = container.querySelectorAll('.content')
 
-    const contents = container.querySelectorAll('.accordeon_content');
-    if (!contents) return;
+    const show = e => {
+        let button = e.target;
+        let nextContent = button.nextElementSibling;
 
-    const show = (event) => {
-        let nextElem = event.target.nextElementSibling;
-        let button = event.target;
-
-        contents.forEach(element => {
-            if (nextElem !== element) element.classList.remove('active');
+        contents.forEach(el => {
+            if (el !== nextContent) el.classList.remove('active');
         });
-        butons.forEach(element => {
-            if (button !== element) element.classList.remove('active');
+        buttons.forEach(el => {
+            if (el !== button) el.classList.remove('active');
         });
 
         button.classList.toggle('active');
-        nextElem.classList.toggle('active');
+        nextContent.classList.toggle('active');
     }
 
-    butons.forEach(button => {
-        button.addEventListener('click', show);
-    });
+    buttons.forEach(el => el.addEventListener('click', show));
 }
 
-accordeon('.accordeon_container')
+accordeon('.acc_container');

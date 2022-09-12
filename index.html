@@ -1,56 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="./style/style.css">
-    <link rel="stylesheet" href="./style/tooltip.css">
-    <link rel="stylesheet" href="./style/popup.css">
-    <link rel="stylesheet" href="./style/slider.css">
-    <link rel="stylesheet" href="./style/accordeon.css">
+    <title>toltips</title>
+    <link rel="stylesheet" href="./style/tooltips.css">
 </head>
-
 <body>
-    <div class="container">
-        <div class="main_slider">
-            <ul class="sliders">
-                <li class="slide"><img src="https://via.placeholder.com/400x200?text=slide_1" alt=""></li>
-                <li class="slide"><img src="https://via.placeholder.com/400x200?text=slide_2" alt=""></li>
-                <li class="slide"><img src="https://via.placeholder.com/400x200?text=slide_3" alt=""></li>
-                <li class="slide"><img src="https://via.placeholder.com/400x200?text=slide_4" alt=""></li>
-                <li class="slide"><img src="https://via.placeholder.com/400x200?text=slide_5" alt=""></li>
-            </ul>
-        </div>
-        <button class="button prev">prev</button>
-        <button class="button next">next</button>
-    </div>
-
-    <div class="wrapper">
-        <div class="accordeon_container">
-            <div class="accordeon_button">Menu 1</div>
-            <div class="accordeon_content">Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum, quo eaque!
-                Hic non pariatur velit distinctio nesciunt ullam odit ipsa molestiae reiciendis. Nisi porro veritatis
-                saepe sunt maxime sit laudantium neque? Soluta, ut labore. Suscipit doloremque fuga sunt dolorem.
-                Distinctio quisquam neque iusto nisi doloribus repellat explicabo ducimus vel suscipit.</div>
-            <div class="accordeon_button">Menu 2</div>
-            <div class="accordeon_content">Veritatis aliquam at cupiditate, distinctio dolorem reprehenderit optio,
-                quibusdam suscipit deleniti magni adipisci pariatur debitis sapiente nam quasi molestias labore possimus
-                est! Quia animi modi aliquam laudantium vitae commodi libero ullam, iusto odit illo similique architecto
-                blanditiis provident. Commodi eius nobis vitae! Quas sit quis quo fugit ducimus cumque architecto!</div>
-            <div class="accordeon_button">Menu 3</div>
-            <div class="accordeon_content">Saepe temporibus id corrupti reiciendis quidem tempore quos pariatur, nihil,
-                accusamus, nisi odit. Iure perferendis ad, nobis maiores nesciunt accusamus. Blanditiis enim excepturi
-                sed. Commodi nihil voluptatum nesciunt deleniti quasi dolor culpa, neque, recusandae possimus amet
-                veritatis saepe odit aspernatur dignissimos nobis quae corporis ullam? Aut quaerat est culpa officiis?
-            </div>
-        </div>
+    <div class="conteiner">
+        <p class="text">Lorem <span class="tooltip" title="My tooltip">ipsum dolor</span> sit amet, consectetur adipisicing elit. Tempora, excepturi!</p>
+        <p class="text">Beatae voluptates, fugit <span class="tooltip" title="My tooltip">ipsum dolor</span> eius commodi error architecto nisi animi aliquid!</p>
+        <p class="text">Voluptate earum rem optio ex ipsam error quasi ipsa <span class="tooltip" title="My tooltip">ipsum dolor</span> perferendis.</p>
     </div>
 </body>
-<script src="./script/tooltip.js"></script>
-<script src="./script/popup.js"></script>
-<script src="./script/slider.js"></script>
-<script src="./script/accordeon.js"></script>
+<script src="./script/tooltips.js"></script>
 </html>
