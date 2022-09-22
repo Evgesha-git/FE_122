@@ -1,113 +1,169 @@
-const calc = (selector) => {
-    const container = document.querySelector(selector);
-    const buttons = container.querySelector('.buttons');
-    const text = container.querySelector('#calc');
+/**
+ * Конструкторы для приложения
+ * Note - одна заметка
+ * NoteController - логика управления заметками
+ * NoteUI - отвечает за графическое предствавление
+ */
 
-    const calculator = {
-        inputValue: '0',
-        waitOperation: false,
-        operation: null,
-        operand: null,
-        inOperation: true,
-    };
+function Note(data) { // {title: заголовок заметки, content: содержимое заметки}
+    if (data.title.length > 0) this.data = data;
+}
 
-    const calculation = {
-        '+': (fOperand, sOperand) => fOperand + sOperand,
-        '-': (fOperand, sOperand) => fOperand - sOperand,
-        '*': (fOperand, sOperand) => fOperand * sOperand,
-        '/': (fOperand, sOperand) => fOperand / sOperand,
-        '%': (fOperand, sOperand) => fOperand * (sOperand / 100),
-        '=': (fOperand, sOperand) => sOperand,
-        '+/-': (fOperand, sOperand) => sOperand >= 0 ? -sOperand : +sOperand,
-    };
+Note.prototype.edit = function (data) {
+    Object.assign(this.data, data);
+}
 
-    const handleOperation = (nextOperation) => {
-        const inputValue = parseFloat(calculator.inputValue);
 
-        if (calculator.operation && 
-            calculator.waitOperation && 
-            calculator.operation !== '=') {
-            calculator.operation = nextOperation;
+function NoteController() {
+    this.notes = [];
+    this.id = 0
+}
+
+NoteController.prototype.add = function (data) {
+    if (!data.title) return;
+    let note = new Note(data);
+    let id = this.id++;
+    note.edit({ id });
+    this.notes.push(note);
+}
+
+NoteController.prototype.edit = function (id, data) {
+    this.notes.forEach(note => {
+        if (note.data.id === id) {
+            note.edit(data);
         }
-
-        if (calculator.operand === null) {
-            calculator.operand = inputValue;
-            calculator.inOperation = false;
-        } else if (calculator.operation && calculator.inOperation) {
-            let rez = 0;
-            const currentValue = calculator.operand || 0;
-
-            rez = calculation[calculator.operation](currentValue, inputValue);
-
-            calculator.inputValue = rez;
-            calculator.operand = rez;
-        }
-
-        if(nextOperation === '+/-'){
-            let rez = 0;
-            rez = calculation[nextOperation](0, inputValue);
-            calculator.inputValue = rez;
-            calculator.operand = rez;
-            render();
-        }else{
-            calculator.waitOperation = true;
-            calculator.operation = nextOperation;
-        }
-    }
-
-    const inputOperand = (operand) => {
-        if (calculator.waitOperation) {
-            calculator.inputValue = operand;
-            calculator.waitOperation = false;
-            calculator.inOperation = true;
-        } else {
-            calculator.inputValue = calculator.inputValue === '0' ? operand : calculator.inputValue + operand
-        }
-    }
-
-    const render = () => {
-        text.value = calculator.inputValue;
-    }
-
-    const clear = () => {
-        calculator.inputValue = '0';
-        calculator.waitOperation = false;
-        calculator.operation = null;
-        calculator.operand = null;
-    }
-
-    const addDot = value => {
-        let index = calculator.inputValue.indexOf(value);
-
-        if (index === -1) inputOperand(value);
-    }
-
-    buttons.addEventListener('click', event => {
-        const target = event.target;
-
-        if (!target.matches('.button')) return;
-
-        if (target.dataset.math === 'op') {
-            if (target.innerText !== 'C') {
-                handleOperation(target.dataset.operation);
-                render();
-                return;
-            }else{
-                clear();
-                render();
-                return;
-            }
-        }
-
-        if (target.dataset.math === 'dot'){
-            addDot(target.innerText);
-            render();
-            return;
-        }
-
-        inputOperand(target.innerText);
-        render();
     });
 }
 
-calc('.calculator')
+NoteController.prototype.remove = function (id) {
+    this.notes = this.notes.filter(note => note.data.id !== id);
+}
+
+const notes = new NoteController()
+
+function NoteUI(selctor) {
+    NoteController.apply(this);
+    this.selector = selctor;
+    this.notesContainer = null;
+}
+
+NoteUI.prototype = Object.create(NoteController.prototype);
+
+NoteUI.prototype.init = function () {
+    const container = document.querySelector(this.selector);
+
+    let formContainer = this.createElement('form');
+    let titleInput = this.createElement('input', [
+        ['type', 'text'],
+        ['placeholder', 'title']
+    ]);
+    let contentInput = this.createElement('input', [
+        ['type', 'text'],
+        ['placeholder', 'content']
+    ]);
+    let buttonAdd = this.createElement('button', [
+        ['type', 'submit']
+    ], 'Add');
+    this.notesContainer = this.createElement('div', [
+        ['class', 'notes']
+    ]);
+
+    formContainer.addEventListener('submit', event => {
+        event.preventDefault();
+        let data = {
+            title: titleInput.value,
+            content: contentInput.value,
+        };
+
+        this.add(data);
+
+        titleInput.value = '';
+        contentInput.value = '';
+
+        this.render();
+    });
+
+    formContainer.append(titleInput, contentInput, buttonAdd);
+
+    container.append(formContainer, this.notesContainer);
+}
+
+NoteUI.prototype.createElement = function (elem, attributes = [], content = null) {//attributes = [[name, value]]
+    let element = document.createElement(elem);
+    if (attributes.length > 0) {
+        attributes.forEach(attr => {
+            element.setAttribute(attr[0], attr[1]);
+        });
+    }
+
+    if (content !== null) {
+        element.innerText = content;
+    }
+
+    return element;
+}
+
+NoteUI.prototype.render = function () {
+    this.notesContainer.innerHTML = '';
+    this.notes.forEach(note => {
+        let noteElem = this.createElement('div', [['class', 'note_elem']]);
+        let title = this.createElement('h2', [
+            ['class', 'title']
+        ], note.data.title);
+        let content = this.createElement('p', [
+            ['class', 'content']
+        ], note.data.content);
+
+        let editButton = this.createElement('button', [], 'Edit');
+        let delButton = this.createElement('button', [], 'Remove');
+
+        delButton.addEventListener('click', () => {
+            this.remove(note.data.id);
+            this.render();
+        });
+
+        let flag = true;
+
+        editButton.addEventListener('click', () => {
+            if (flag) {
+                title.contentEditable = true;
+                content.contentEditable = true;
+                editButton.innerText = 'Save';
+                flag = !flag;
+            } else {
+                title.contentEditable = false;
+                content.contentEditable = false;
+                editButton.innerText = 'Edit';
+                flag = !flag;
+                let data = {
+                    title: title.innerText,
+                    content: content.innerText,
+                }
+                this.edit(note.data.id, data);
+            }
+            console.log(this.notes);
+        });
+
+        noteElem.addEventListener('keydown', event => {
+            let target = event.target;
+            if (target.classList.contains('title') || target.classList.contains('content')) {
+                if (event.altKey && event.code === 'Enter') {
+                    title.contentEditable = false;
+                    content.contentEditable = false;
+                    editButton.innerText = 'Edit';
+                    flag = !flag;
+                    let data = {
+                        title: title.innerText,
+                        content: content.innerText,
+                    }
+                    this.edit(note.data.id, data);
+                }
+            }
+        });
+
+        noteElem.append(title, content, editButton, delButton);
+        this.notesContainer.append(noteElem);
+    });
+}
+
+new NoteUI('.note').init();
