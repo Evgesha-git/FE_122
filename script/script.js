@@ -5,165 +5,212 @@
  * NoteUI - отвечает за графическое предствавление
  */
 
-function Note(data) { // {title: заголовок заметки, content: содержимое заметки}
-    if (data.title.length > 0) this.data = data;
-}
+class Note{
+    #data;
+    constructor(data){
+        if (data.title.length > 0) this.#data = data;
+    }
 
-Note.prototype.edit = function (data) {
-    Object.assign(this.data, data);
-}
+    edit(data){
+        Object.assign(this.#data, data);
+    }
 
+    get data(){
+        return this.#data;
+    }
 
-function NoteController() {
-    this.notes = [];
-    this.id = 0
-}
-
-NoteController.prototype.add = function (data) {
-    if (!data.title) return;
-    let note = new Note(data);
-    let id = this.id++;
-    note.edit({ id });
-    this.notes.push(note);
-}
-
-NoteController.prototype.edit = function (id, data) {
-    this.notes.forEach(note => {
-        if (note.data.id === id) {
-            note.edit(data);
+    set data(data){
+        // Object.assign(this.#data, data);
+        this.#data = {
+            ...this.#data,
+            ...data,
         }
-    });
+    }
 }
 
-NoteController.prototype.remove = function (id) {
-    this.notes = this.notes.filter(note => note.data.id !== id);
+let data = {
+    title: 'title',
+    content: 'content'
 }
 
-const notes = new NoteController()
-
-function NoteUI(selctor) {
-    NoteController.apply(this);
-    this.selector = selctor;
-    this.notesContainer = null;
+let note = {
+    data: { //this.data
+        title: 'title',
+        content: 'content'
+    }
 }
 
-NoteUI.prototype = Object.create(NoteController.prototype);
+const note1 = new Note({title: 'title 1', content: 'content 1'});
 
-NoteUI.prototype.init = function () {
-    const container = document.querySelector(this.selector);
+// let arr1 = [1, 2, 3];
+// let arr2 = arr1;
+// let arr3 = [...arr1]; //[] - создали,[] <- 1, <- 2, <-3
 
-    let formContainer = this.createElement('form');
-    let titleInput = this.createElement('input', [
-        ['type', 'text'],
-        ['placeholder', 'title']
-    ]);
-    let contentInput = this.createElement('input', [
-        ['type', 'text'],
-        ['placeholder', 'content']
-    ]);
-    let buttonAdd = this.createElement('button', [
-        ['type', 'submit']
-    ], 'Add');
-    this.notesContainer = this.createElement('div', [
-        ['class', 'notes']
-    ]);
+// let o1 = {
+//     name: 'alex',
+//     age: 11
+// };
 
-    formContainer.addEventListener('submit', event => {
-        event.preventDefault();
-        let data = {
-            title: titleInput.value,
-            content: contentInput.value,
-        };
+// let o2 = {
+//     ...o1,
+//     surname: 'Petrov',
+// }
 
-        this.add(data);
-
-        titleInput.value = '';
-        contentInput.value = '';
-
-        this.render();
-    });
-
-    formContainer.append(titleInput, contentInput, buttonAdd);
-
-    container.append(formContainer, this.notesContainer);
-}
-
-NoteUI.prototype.createElement = function (elem, attributes = [], content = null) {//attributes = [[name, value]]
-    let element = document.createElement(elem);
-    if (attributes.length > 0) {
-        attributes.forEach(attr => {
-            element.setAttribute(attr[0], attr[1]);
-        });
+class NoteController{
+    #notes;
+    constructor(){
+        this.#notes = [];
     }
 
-    if (content !== null) {
-        element.innerText = content;
+    add(obj){
+        if (!obj.title) return;
+
+        let note = new Note(obj);
+        let id = this.getRandomId();
+        console.log({id});
+        note.data = {id}; // {id: id}
+        this.#notes.push(note);
+        return this;
     }
 
-    return element;
-}
+    getRandomId(){
+        let id = Math.floor(Math.random() * 1000000);
+        if (this.#notes.length === 0) return id;
+        
+        let flag = this.#notes.some(note => note.data.id === id);
+        if (flag){
+            return this.getRandomId();
+        }else{
+            return id;
+        }
+    }
 
-NoteUI.prototype.render = function () {
-    this.notesContainer.innerHTML = '';
-    this.notes.forEach(note => {
-        let noteElem = this.createElement('div', [['class', 'note_elem']]);
-        let title = this.createElement('h2', [
-            ['class', 'title']
-        ], note.data.title);
-        let content = this.createElement('p', [
-            ['class', 'content']
-        ], note.data.content);
+    remove(id){
+        this.#notes = this.#notes.filter(note => note.data.id !== id);
+        return this;
+    }
 
-        let editButton = this.createElement('button', [], 'Edit');
-        let delButton = this.createElement('button', [], 'Remove');
-
-        delButton.addEventListener('click', () => {
-            this.remove(note.data.id);
-            this.render();
-        });
-
-        let flag = true;
-
-        editButton.addEventListener('click', () => {
-            if (flag) {
-                title.contentEditable = true;
-                content.contentEditable = true;
-                editButton.innerText = 'Save';
-                flag = !flag;
-            } else {
-                title.contentEditable = false;
-                content.contentEditable = false;
-                editButton.innerText = 'Edit';
-                flag = !flag;
-                let data = {
-                    title: title.innerText,
-                    content: content.innerText,
-                }
-                this.edit(note.data.id, data);
+    edit(id, data){
+        this.#notes.forEach(note => {
+            if (note.data.id === id){
+                note.data = data;
             }
-            console.log(this.notes);
+        });
+        return this;
+    }
+
+    get notes(){
+        return this.#notes;
+    }
+}
+
+//getRandomId(id -> true) -> getRandomId(id -> true) -> getRandomId(id -> true) ...  -> getRandomId(id -> false)
+//getRandomId(id -> true) <- getRandomId(id -> true) <- getRandomId(id -> true) ...  <- getRandomId(id -> false)
+
+const notes1 = new NoteController();
+
+class NoteUI extends NoteController{
+    constructor(selector){
+        super();
+        this.app = null;
+        this.notesContainer = null;
+        this.init(selector);
+    }
+
+    init(selector){
+        this.app = document.querySelector(selector);
+
+        let formContainer = this.createElement('form');
+        let titleInput = this.createElement('input', [
+            ['type', 'text'],
+            ['placeholder','Введите название заметки']
+        ]);
+        let contentInput = this.createElement('textarea', [
+            ['placeholder', 'Ваша заметка']
+        ]);
+        let addButton = this.createElement('button', [
+            ['type', 'submit']
+        ], 'Добавить заметку');
+        formContainer.append(titleInput, contentInput, addButton);
+        formContainer.addEventListener('submit', (e) => {
+            e.preventDefault();
+            let data = {
+                title: titleInput.value,
+                content: contentInput.value,
+            };
+            this.add(data);
+            this.render();
+            titleInput.value = '';
+            contentInput.value = '';
         });
 
-        noteElem.addEventListener('keydown', event => {
-            let target = event.target;
-            if (target.classList.contains('title') || target.classList.contains('content')) {
-                if (event.altKey && event.code === 'Enter') {
+        this.notesContainer = this.createElement('div', [
+            ['class', 'notes']
+        ]);
+
+        this.app.append(formContainer, this.notesContainer);
+    }
+
+    render(){
+        this.notesContainer.innerHTML = '';
+        this.notes.forEach(note => {
+            let noteElem = this.createElement('div', [
+                ['class', 'note']
+            ]);
+
+            let title = this.createElement('h2', [
+                ['class', 'title']
+            ], note.data.title);
+            let content = this.createElement('p', [
+                ['class', 'content']
+            ], note.data.content);
+            let edit = this.createElement('button', [], 'Edit');
+            let remove = this.createElement('button', [], 'Remove');
+
+            remove.addEventListener('click', () => {
+                this.remove(note.data.id);
+                this.render();
+            });
+
+            let flag = true;
+
+            edit.addEventListener('click', () => {
+                if (flag){
+                    title.contentEditable = true;
+                    content.contentEditable = true;
+                    edit.innerHTML = 'Save';
+                    flag = !flag; // true -> false
+                }else{
                     title.contentEditable = false;
                     content.contentEditable = false;
-                    editButton.innerText = 'Edit';
-                    flag = !flag;
+                    edit.innerHTML = 'Edit';
+                    flag = !flag;// false -> true
                     let data = {
                         title: title.innerText,
                         content: content.innerText,
                     }
                     this.edit(note.data.id, data);
+                    console.log(this.notes);
                 }
-            }
-        });
+            });
 
-        noteElem.append(title, content, editButton, delButton);
-        this.notesContainer.append(noteElem);
-    });
+            noteElem.append(title, content, edit, remove);
+            this.notesContainer.append(noteElem);
+        });
+    }
+
+    createElement(name, attributes = [], content = ''){
+        let elem = document.createElement(name);
+
+        if (attributes.length > 0){
+            attributes.forEach(attr => elem.setAttribute(attr[0], attr[1]));
+        }
+
+        if (content){
+            elem.innerHTML = content;
+        }
+        return elem;
+    }
 }
 
-new NoteUI('.note').init();
+new NoteUI('.note');
