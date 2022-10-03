@@ -66,7 +66,6 @@ class NoteController {
 
         let note = new Note(obj);
         let id = this.getRandomId();
-        console.log({ id });
         note.data = { id }; // {id: id}
         this.#notes.push(note);
         return this;
@@ -154,7 +153,33 @@ class NoteController {
 
         document.cookie = updatedCookie;
     }
+
+    async getApiData(){
+        const response = await fetch('https://jsonplaceholder.typicode.com/posts');
+        const data =  await response.json();
+        data.forEach(note => {
+            const {title, body: content} = note;
+            this.add({title, content});
+        });
+    }
 }
+
+let o = {
+    userId: 1,
+    id: 1,
+    title: "sunt aut facere repellat provident occaecati excepturi optio reprehenderit",
+    body: "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto"
+};
+
+// console.log(o.title);
+// console.log(o.id);
+// console.log(o.userId);
+// console.log(o.body);
+
+const {title: a, body: b} = o;
+
+console.log({a, b});
+
 
 //getRandomId(id -> true) -> getRandomId(id -> true) -> getRandomId(id -> true) ...  -> getRandomId(id -> false)
 //getRandomId(id -> true) <- getRandomId(id -> true) <- getRandomId(id -> true) ...  <- getRandomId(id -> false)
@@ -169,7 +194,7 @@ class NoteUI extends NoteController {
         this.init(selector);
     }
 
-    init(selector) {
+    async init(selector) {
         this.app = document.querySelector(selector);
 
         let formContainer = this.createElement('form');
@@ -208,10 +233,28 @@ class NoteUI extends NoteController {
 
             data.forEach(note => {
                 Object.keys(note).forEach(key => this.add(note[key]));
-            })
+            });
 
             this.render();
+        }else{
+            // await this.getApiData();
+            // this.storage = this.notes;
+            // this.render();
+            this.getApiData();
         }
+    }
+
+    getApiData(){
+        fetch ('https://jsonplaceholder.typicode.com/posts')
+            .then(resp => resp.json())
+            .then(data => {
+                data.forEach(note => {
+                    const {title, body: content} = note;
+                    this.add({title, content});
+                });
+                this.storage = this.notes;
+                this.render();
+            });
     }
 
     render() {
@@ -287,7 +330,7 @@ class NoteUI extends NoteController {
 new NoteUI('.note');
 
 
-for (var i = 0; i < 10; i++){
-    setTimeout(() => console.log(i), 0);
-}
+// for (var i = 0; i < 10; i++){
+//     setTimeout(() => console.log(i), 0);
+// }
 
