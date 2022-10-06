@@ -1,0 +1,73 @@
+header nav ul li a, header nav ul li a:hover, a, p {
+  text-decoration: none;
+  font-size: 20px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -ms-flex-wrap: no-wrap;
+      flex-wrap: no-wrap;
+  padding: 0 200px 0 40px;
+}
+
+header .logo {
+  display: block;
+  width: 200px;
+  height: 40px;
+}
+
+header .logo img {
+  width: 100%;
+}
+
+header nav {
+  width: 100%;
+  margin-left: 70px;
+}
+
+header nav ul {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  list-style: none;
+  width: 60%;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+header nav ul li {
+  display: block;
+  border-bottom: 3px solid #ff9100;
+}
+
+header nav ul li:hover {
+  background: #ff9100;
+  border-color: #8afb00;
+}
+
+header nav ul li a, header nav ul li a:hover {
+  color: #000;
+}
+
+header nav ul li a:hover {
+  color: #000;
+}
+/*# sourceMappingURL=style.css.map */
