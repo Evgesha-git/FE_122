@@ -1,4 +1,5 @@
 import { getApiData } from "./API/spa.js";
+import { addCart } from "./cart.js";
 
 class Catalog{
     constructor(){
@@ -26,6 +27,10 @@ class Catalog{
             <span class="price">${price}</span>
             <span class="raiting">${rate}</span>
             `;
+            let addButton = document.createElement('button');
+            addButton.innerText = 'Add';
+            addButton.addEventListener('click', () => addCart(element));
+            product.append(addButton);
 
             catalogContainer.append(product);
         });

@@ -8,17 +8,31 @@ class Main {
     router() {
         let hash = location.hash.slice(1);
 
-        if (!hash) hash = 'home'
+        if (!hash) hash = 'home';
 
-        import(`./${hash}.js`)
-            .then(module => {
-                this.main.innerHTML = '';
-                console.log(module);
-                this.main.append(module.default);
-            })
-            .catch(error => {
-                this.main.innerHTML = '<h1>404</h1>'
-            });
+        if (hash.indexOf('/') === -1) {
+            import(`./${hash}.js`)
+                .then(module => {
+                    this.main.innerHTML = '';
+                    console.log(module);
+                    this.main.append(module.default);
+                })
+                .catch(error => {
+                    this.main.innerHTML = '<h1>404</h1>'
+                });
+        }else{
+            let index = hash.indexOf('/')
+            let id = hash.slice(index + 1);
+            import("./product.js")
+                .then(module => {
+                    this.main.innerHTML = '';
+                    let product = new module.default(id);
+                    this.main.append(product.init());
+                })
+                .catch(error => {
+                    this.main.innerHTML = '<h1>404</h1>'
+                });
+        }
     }
 
     init() {

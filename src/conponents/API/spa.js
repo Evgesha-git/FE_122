@@ -3,4 +3,9 @@ async function getApiData(){
     return await resp.json();
 }
 
-export { getApiData };
+async function getApiItem(id){
+    let resp = await fetch(`https://fakestoreapi.com/products/${id}`);
+    return await resp.json();
+}
+
+export { getApiData, getApiItem };

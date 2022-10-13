@@ -1,3 +1,5 @@
+import { widget } from "./cart.js";
+
 class Header{
     constructor(){
         this.header = document.createElement('header');
@@ -15,13 +17,12 @@ class Header{
                     <li><a href="#Abaut">Abaut</a></li>
                 </ul>
             </nav>
-            <div class="cart">
-                <div class="widget">
-                    <span>0</span>
-                    <span>0 Тугриков</span>
-                </div>
-            </div>
         `;
+
+        let cart = document.createElement('div');
+        cart.classList.add('cart');
+        cart.append(widget);
+        this.header.append(cart);
     }
 
     init(){
