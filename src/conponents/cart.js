@@ -1,14 +1,18 @@
-class Cart{
-    constructor(){
+import { addCatStorage, getCartStorage } from "./API/spa.js";
+import addButtonComponent from "./API/addButtonComponent.js";
+
+class Cart {
+    constructor() {
         this.widget = document.createElement('div');
         this.widget.classList.add('widget');
-        this.cart = [];
+        this.cart = getCartStorage();
         this.cartContainer = document.createElement('div');
         this.cartContainer.classList.add('cart-container');
         this.addCart = this.addCart.bind(this);
+        this.cartCounter = this.cartCounter.bind(this);
     }
 
-    getWidget(){
+    getWidget() {
         let counter = this.cart.length ?? 0; //оператор нулевого сравнения схож с ||
         let totalPrice = this.cart.reduce((total, item) => total + item.price, 0) ?? 0;
         this.widget.innerHTML = `
@@ -19,40 +23,103 @@ class Cart{
         return this.widget;
     }
 
-    render(){
+    render() {
         this.cartContainer.innerHTML = '';
 
-        this.cart.forEach(item => {
-            let cartElem = document.createElement('div');
-            cartElem.classList.add('catr-elem');
-            cartElem.innerHTML = `
-                <div class="img">
-                    <img src="${item.image}" alt=""/>
-                </div>
-                <p class="title">${item.title}</p>
-                <p class="price">${item.price}</p>
-            `;
+        if (this.cart.length > 0) {
+            this.cart.forEach(item => {
+                let cartElem = document.createElement('div');
+                cartElem.classList.add('catr-elem');
+                cartElem.innerHTML = `
+                    <div class="img">
+                        <img src="${item.image}" alt=""/>
+                    </div>
+                    <p class="title">${item.title}</p>
+                    <p class="price">${item.price}</p>
+                `;
 
-            this.cartContainer.append(cartElem);
-        });
-    }
+                // let button = addButtonComponent(item, this.addCart, this.cartCounter);
+                // cartElem.append(button);
 
-    addCart(obj){
-        if (obj){
-            obj.counter = 1;
-            this.cart.push(obj);
+                this.cartContainer.append(cartElem);
+            });
+        } else {
+            let empty = document.createElement('div');
+            empty.classList.add('empty');
+            empty.innerHTML = '<h1>Корзина пуста</h1>';
+            this.cartContainer.append(empty);
         }
 
+
+    }
+
+    widgetRender(){
         let counter = this.widget.firstElementChild;
         let totalPrice = this.widget.lastElementChild;
 
         counter.innerText = this.cart.length ?? 0;
-        totalPrice.innerText = this.cart.reduce((total, item) => total + item.price, 0) + ' Тугриков'?? 0 + ' Тугриков';
-
-        this.render();
+        totalPrice.innerText = this.cart.reduce((total, item) => total + item.price, 0) + ' Тугриков' ?? 0 + ' Тугриков';
     }
 
-    init(){
+    addCart(obj) {
+        if (obj) {
+            obj.counter = 1;
+            this.cart.push(obj);
+        }
+
+        this.widgetRender();
+
+        let flag = this.cart.some(item => item.id === obj.id);
+
+        addCatStorage(this.cart);
+        this.render();
+
+        return flag;
+    }
+
+    cartCounter(direction, item) {
+        if (direction) {
+            this.cart = this.cart.map(data => {
+                if (data.id === item.id){
+                    data.counter += 1;
+                    return data;
+                }
+                return data;
+            });
+
+            this.widgetRender();
+            addCatStorage(this.cart);
+            this.render();
+
+            let count = this.cart.find(data => data.id === item.id);
+            return count.counter;
+        } else {
+            this.cart = this.cart.filter(data => {
+                if (data.id === item.id){
+                    data.counter -= 1;
+                    if (data.counter < 1){
+                        if (!confirm('Вы действительно хотите удалить товар?')){
+                            data.counter = 1;
+                            return data
+                        }else{
+                            return null;
+                        }
+                    }
+                    return data;
+                }
+                return data;
+            });
+
+            this.widgetRender();
+            addCatStorage(this.cart);
+            this.render();
+
+            let count = this.cart.find(data => data.id === item.id);
+            return count;
+        }
+    }
+
+    init() {
         this.render();
         return this.cartContainer;
     }
@@ -61,7 +128,8 @@ class Cart{
 let cart = new Cart();
 let widget = cart.getWidget();
 let addCart = cart.addCart;
+let cartCounter = cart.cartCounter;
 let init = cart.init();
 
 export default init;
-export { widget,  addCart };
+export { widget, addCart, cartCounter };

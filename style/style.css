@@ -111,6 +111,27 @@ a:active {
   width: 100%;
 }
 
+.add-button {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100%;
+  height: 50px;
+  background: #b3b3b3;
+  margin: 5px;
+  border-radius: 6px;
+}
+
+.add-button:hover {
+  background: #d5d5d5;
+}
+
 .product_page {
   max-width: 1200px;
   width: 100%;

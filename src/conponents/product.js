@@ -1,5 +1,7 @@
-import { getApiItem } from "./API/spa.js";
-import { addCart } from "./cart.js";
+import addButtonComponent from "./API/addButtonComponent.js";
+import { getStorageData } from "./API/spa.js";
+import { addCart, cartCounter } from "./cart.js";
+
 
 class Product {
     constructor(id) {
@@ -9,7 +11,7 @@ class Product {
     }
 
     async render() {
-        let item = await getApiItem(this.id);
+        let item = await getStorageData(this.id);
         const { title, image, description: desc, category: cat, price, rating: { rate } } = item;
         this.container.innerHTML = `
         <div class="img"><img src="${image}" alt=""></div>
@@ -19,10 +21,7 @@ class Product {
         <span class="rating">Rating: ${rate}</span>
         <span class="price">Price: ${price}</span>
         `;
-        let addButton = document.createElement('button');
-        addButton.classList.add('add-button')
-        addButton.innerText = 'Add';
-        addButton.addEventListener('click', () => addCart(item));
+        let addButton = addButtonComponent(item, addCart, cartCounter);
 
         this.container.append(addButton);
     }

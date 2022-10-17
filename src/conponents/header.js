@@ -13,7 +13,7 @@ class Header{
             <nav>
                 <ul>
                     <li><a href="/">Home</a></li>
-                    <li><a href="#Catalog">Catalog</a></li>
+                    <li><a href="#catalog">Catalog</a></li>
                     <li><a href="#Abaut">Abaut</a></li>
                 </ul>
             </nav>
