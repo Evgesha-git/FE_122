@@ -10,11 +10,18 @@ class Cart {
         this.cartContainer.classList.add('cart-container');
         this.addCart = this.addCart.bind(this);
         this.cartCounter = this.cartCounter.bind(this);
+        this.getCart = this.getCart.bind(this);
+    }
+
+    getTotalPrice(){
+        let num = this.cart.reduce((total, item) => total + (item.price * item.counter), 0);
+        num = Number.parseFloat(num.toFixed(2));
+        return num
     }
 
     getWidget() {
         let counter = this.cart.length ?? 0; //оператор нулевого сравнения схож с ||
-        let totalPrice = this.cart.reduce((total, item) => total + item.price, 0) ?? 0;
+        let totalPrice = this.getTotalPrice() ?? 0;
         this.widget.innerHTML = `
         <a href="#cart">${counter}</a>
         <span>|</span>
@@ -38,8 +45,8 @@ class Cart {
                     <p class="price">${item.price}</p>
                 `;
 
-                // let button = addButtonComponent(item, this.addCart, this.cartCounter);
-                // cartElem.append(button);
+                let button = addButtonComponent(item, this.addCart, this.cartCounter);
+                cartElem.append(button);
 
                 this.cartContainer.append(cartElem);
             });
@@ -58,7 +65,7 @@ class Cart {
         let totalPrice = this.widget.lastElementChild;
 
         counter.innerText = this.cart.length ?? 0;
-        totalPrice.innerText = this.cart.reduce((total, item) => total + item.price, 0) + ' Тугриков' ?? 0 + ' Тугриков';
+        totalPrice.innerText = this.getTotalPrice() + ' Тугриков' ?? 0 + ' Тугриков';
     }
 
     addCart(obj) {
@@ -120,8 +127,12 @@ class Cart {
     }
 
     init() {
-        this.render();
+        // this.render();
         return this.cartContainer;
+    }
+
+    getCart(){
+        return this.cart;
     }
 }
 
@@ -130,6 +141,9 @@ let widget = cart.getWidget();
 let addCart = cart.addCart;
 let cartCounter = cart.cartCounter;
 let init = cart.init();
+let data = cart.getCart;
+cart.render();
+
 
 export default init;
-export { widget, addCart, cartCounter };
+export { widget, addCart, cartCounter, data};

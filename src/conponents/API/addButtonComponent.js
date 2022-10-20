@@ -1,3 +1,5 @@
+import { data } from "../cart.js";
+
 export default function addButtonComponent(obj, addCart, cartCounter) {
     let minus = document.createElement('button');
     minus.innerText = '-';
@@ -38,10 +40,20 @@ export default function addButtonComponent(obj, addCart, cartCounter) {
         }
     }
 
+    
+
     let addButton = document.createElement('div');
     addButton.classList.add('add-button')
     addButton.innerText = 'Add';
     addButton.addEventListener('click', add);
+
+    if (data().some(elem => elem.id === obj.id)){
+        addButton.innerHTML = '';
+        addButton.append(minus, counter, plas);
+        let elem = data().find(elem => elem.id === obj.id);
+        counter.innerHTML = elem.counter;
+        addButton.removeEventListener('click', add);
+    }
 
     return addButton;
 }

@@ -14,13 +14,18 @@ class Main {
             import(`./${hash}.js`)
                 .then(module => {
                     this.main.innerHTML = '';
-                    console.log(module);
-                    this.main.append(module.default);
+                    console.log(module.default instanceof Function);
+                    if (module.default instanceof Function) {
+                        let component = new module.default();
+                        this.main.append(component.init())
+                    } else {
+                        this.main.append(module.default);
+                    }
                 })
                 .catch(error => {
                     this.main.innerHTML = '<h1>404</h1>'
                 });
-        }else{
+        } else {
             let index = hash.indexOf('/')
             let id = hash.slice(index + 1);
             import("./product.js")

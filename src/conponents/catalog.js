@@ -29,49 +29,6 @@ class Catalog {
             <span class="raiting">${rate}</span>
             `;
 
-            // let minus = document.createElement('button');
-            // minus.innerText = '-';
-            // let counter = document.createElement('div');
-            // counter.innerHTML = '1';
-            // let plas = document.createElement('button');
-            // plas.innerText = '+';
-
-            // minus.addEventListener('click', () => {
-            //     let num = cartCounter(false, element);
-            //     try{
-            //         num = num.counter;
-            //     }catch(e){
-            //         num = 0;
-            //     }
-                
-            //     if (num){
-            //         counter.innerHTML = num; //без try .. catch было бы так => counter.innerHTML = num.counter
-            //     }else{
-            //         addButton.innerHTML = 'Add';
-            //         addButton.addEventListener('click', add);
-            //     }
-            // })
-
-            // plas.addEventListener('click', () => {
-            //     let num = cartCounter(true, element);
-            //     counter.innerHTML = num;
-            // });
-
-            // const add = (e) => {
-            //     if (!e.target.classList.contains('add-button')) return;
-            //     if (addCart(element)) {
-            //         addButton.innerHTML = '';
-            //         addButton.append(minus, counter, plas);
-            //         addButton.removeEventListener('click', add);
-            //     } else {
-            //         addCart(element);
-            //     }
-            // }
-
-            // let addButton = document.createElement('div');
-            // addButton.classList.add('add-button')
-            // addButton.innerText = 'Add';
-            // addButton.addEventListener('click', add);
             const addButton = addButtonComponent(element, addCart, cartCounter);
             product.append(addButton);
 
@@ -87,4 +44,4 @@ class Catalog {
     }
 }
 
-export default new Catalog().init();
+export default Catalog;

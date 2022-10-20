@@ -19,7 +19,7 @@ async function getStorageData(id) {
         } else {
             let data = await getApiData();
             localStorage.setItem('catalog', JSON.stringify(data));
-            setCookie('catalog', '', {secure: true, 'max-age': 200});
+            setCookie('catalog', '', {secure: true, 'max-age': 2000});
             return data;
         }
     }
@@ -27,7 +27,7 @@ async function getStorageData(id) {
 
 function addCatStorage(data){
     localStorage.setItem('cart', JSON.stringify(data));
-    setCookie('cart', '', {secure: true, 'max-age': 50});
+    setCookie('cart', '', {secure: true, 'max-age': 5000});
 }
 
 function getCartStorage(){
