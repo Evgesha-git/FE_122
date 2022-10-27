@@ -10,16 +10,29 @@
     left: 0;
 }
 
-.log-in-form .form{
+.form{
     /* max-width: 500px;
     width: 100%;
     max-height: 350px;
     height: 100%; */
     background: #fff;
     padding: 30px;
+    display: flex;
+    flex-direction: column;
+    .input{
+        margin: 5px 0;
+
+        .done *{
+            stroke: #6ABF28;
+        }
+
+        .error *{
+            stroke: #F03A3A;
+        }
+    }
 }
 
-.log-in-form .form button{
+.button{
     padding: 20px;
     margin: 5px auto;
 }

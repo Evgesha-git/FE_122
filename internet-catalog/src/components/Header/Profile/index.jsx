@@ -1,33 +1,46 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
+import { LogContext, LoginContext, UserContext } from "../../../App";
 import Logo from "../Logo";
-import user from './img/user.svg';
-import "./component.style.css";
+import userImg from './img/user.svg';
+import style from "./Profile.module.css";
 
-const Profile = (props) => {
+
+const Profile = () => {
+    const { login, setLogin } = useContext(LoginContext);
+    const { user, setUser} = useContext(UserContext);
+    const { setLog } = useContext(LogContext);
 
     const handlerLogOut = () => {
-        props.setLogin(false);
-        props.setUser('');
+        setLogin(false);
+        setUser('');
     }
+
+    useEffect(() => {
+        console.log('Компонент отрисован');
+
+        return () => {
+            console.log('Компонент удалён');
+        }
+    }, [login]);
 
     return (
         <React.Fragment>
-            {props.login ? 
-                <div className="login-badj">
+            {login ? 
+                <div className={style.loginBadj}>
                     <Logo
                         style={{
                             width: '50px', 
                             height: '50px', 
-                            'border-radius': '50%',
+                            borderRadius: '50%',
                             border: '1px solid black',
                             overflow: 'hidden',
                         }}
-                        src={user}
+                        src={userImg}
                     /> 
-                    <p className="user-name">{props.user}</p>
-                    <button className="log-out" onClick={handlerLogOut}>Logout</button>
+                    <p className={style.userName}>{user}</p>
+                    <button className={`${style.button} ${style.logOut}`} onClick={handlerLogOut}>Logout</button>
                 </div> :
-                <button className="log-in" onClick={() => props.setLog(true)}>Log-in</button>
+                <button className={style.button} onClick={() => setLog(true)}>Log-in</button>
             }
         </React.Fragment>
     )

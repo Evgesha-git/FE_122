@@ -12,13 +12,7 @@ const Header = (props) => {
                 src={'https://via.placeholder.com/260x40'}
             />
             <Nav />
-            <Profile
-                login={props.login}
-                user={props.user}
-                setLogin={props.setLogin}
-                setUser={props.setUser}
-                setLog={props.setLog}
-            />
+            <Profile/>
         </header>
     )
 }

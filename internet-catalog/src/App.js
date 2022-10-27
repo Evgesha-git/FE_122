@@ -1,7 +1,11 @@
-import './App.css';
+import style from './App.module.scss';
 import Header from './components/Header';
 import LogIn from "./components/LogIn";
-import { useState } from "react";
+import { useState, createContext } from "react";
+
+export const LoginContext = createContext();
+export const UserContext = createContext();
+export const LogContext = createContext();
 
 function App() {
   const [login, setLogin] = useState(false);
@@ -9,20 +13,16 @@ function App() {
   const [log, setLog] = useState(false);
 
   return (
-    <div className="App">
-      <Header
-        login={login}
-        setLogin={setLogin}
-        user={user}
-        setUser={setUser}
-        setLog={setLog}
-      />
-      {log ? <LogIn
-        setLog={setLog}
-        setLogin={setLogin}
-        setUser={setUser}
-      /> : null}
-    </div>
+    <LogContext.Provider value={{ log, setLog }}>
+      <UserContext.Provider value={{ user, setUser }}>
+        <LoginContext.Provider value={{login, setLogin}}>
+          <div className={style.App}>
+            <Header/>
+            {log ? <LogIn /> : null}
+          </div>
+        </LoginContext.Provider>
+      </UserContext.Provider>
+    </LogContext.Provider>
   );
 }
 
