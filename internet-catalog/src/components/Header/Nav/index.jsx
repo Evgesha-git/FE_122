@@ -1,12 +1,13 @@
 import "./component.style.css";
+import { Link } from "react-router-dom";
 
 const Nav = (props) => {
     return (
         <nav>
             <ul>
-                <li><a href="/">Home</a></li>
-                <li><a href="/">Catalog</a></li>
-                <li><a href="/">Abaut</a></li>
+                <li><Link to={'/'}>Home</Link></li>
+                <li><Link to={'/catalog'}>Catalog</Link></li>
+                <li><Link to={'/abaut'}>Abaut</Link></li>
             </ul>
         </nav>
     )
