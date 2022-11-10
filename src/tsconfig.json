@@ -1,0 +1,13 @@
+{
+    "compilerOptions": {
+        "target": "ES6",
+        "module": "system",
+        "noImplicitAny": true,
+        "removeComments": true,
+        "outDir": "build",
+        "outFile": "script.js",
+    },
+    "files": [
+        "script.ts"
+    ]
+}
