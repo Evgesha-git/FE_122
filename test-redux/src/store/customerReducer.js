@@ -15,7 +15,7 @@ export const customerReducer = (state = defaultState, action) => {
         case FETCH_CUSTOMERS:
             return {...state, loading: true}
         case REMOVE_CUSTOMER:
-            return { ...state, customers: state.customers.filter(user => user.id !== action.payload), loading: true}
+            return { ...state, customers: state.customers.filter(user => user.id !== action.payload), loading: false}
         case ADD_MANY_CUSTOMERS:
             return { ...state, customers: [...state.customers, ...action.payload], loading: false }
         default:
