@@ -1,0 +1,4 @@
+state (Банк) <= reducer <=  actions
+                              ^
+                              ||
+                            dispatc
