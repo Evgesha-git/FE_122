@@ -25,6 +25,8 @@ export const organizeReducer = (state = initialState, action: OrganizeAction) =>
             return {loading: false, error: null, success: action.payload, user: state.user};
         case OrganizeActionTypes.ERROR_ORGANIZE:
             return {loading: false, error: action.payload, user: state.user, success: ''};
+        case OrganizeActionTypes.CLEAR_ORGANIZE:
+            return {loading: false, success: '', error: null, user: initialState.user}
         default:
             return state;
     }

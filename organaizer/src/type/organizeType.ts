@@ -24,7 +24,8 @@ export enum OrganizeActionTypes {
     SET_ORGANIZE = "SET_ORGANIZE",
     REMOVE_TASK = "REMOVE_TASK",
     EDIT_TASK = "EDIT_TASK",
-    ERROR_ORGANIZE = "ERROR_ORGANIZE"
+    ERROR_ORGANIZE = "ERROR_ORGANIZE",
+    CLEAR_ORGANIZE = "CLEAR_ORGANIZE"
 }
 
 interface FetchOrganizeAction {
@@ -56,10 +57,15 @@ interface ErrorOrganizeAction {
     payload: string
 }
 
+interface ClearOrginizeAction {
+    type: OrganizeActionTypes.CLEAR_ORGANIZE
+}
+
 export type OrganizeAction =
     FetchOrganizeAction
     | GetOrganizeAction
     | SetOrganizeAction
     | RemoveOrganizeAction
     | EditOrganizeAction
-    | ErrorOrganizeAction;
+    | ErrorOrganizeAction
+    | ClearOrginizeAction;
