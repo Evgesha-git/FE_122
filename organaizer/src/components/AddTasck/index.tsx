@@ -1,12 +1,12 @@
 import React, {FormEvent, useState} from "react";
-import {useTypeSelector} from "../../../hooks/useTypeSelector";
-import {useAction} from "../../../hooks/useAction";
+import {useTypeSelector} from "../../hooks/useTypeSelector";
+import {useAction} from "../../hooks/useAction";
 import {useNavigate} from "react-router";
-import {routes} from "../../../utils/routes";
+import {routes} from "../../utils/routes";
 
 const AddTasck: React.FC = () => {
     const {user: userAuth} = useTypeSelector(state => state.user);
-    const {user, error, success, loading} = useTypeSelector((state) => state.tasks);
+    const {user} = useTypeSelector((state) => state.tasks);
     const {setOrganize, editOrganize} = useAction();
     const [title, setTitle] = useState<string>('');
     const [description, setDescription] = useState<string>('');

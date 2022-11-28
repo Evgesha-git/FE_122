@@ -4,7 +4,7 @@ import MainPage from "./components/MainPage";
 import {Routes, Route} from "react-router";
 import {routes} from "./utils/routes";
 import UserPage from "./components/UserPage";
-import AddTasck from "./components/MainPage/AddTasck";
+import AddTasck from "./components/AddTasck";
 
 function App() {
   return (
